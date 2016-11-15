@@ -12,10 +12,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RestApiManager {
 
-    private TranslateAPI translateAPI ;
+    private TranslateAPI translateAPI;
 
-    public TranslateAPI getTranslateAPI(){
-        if (translateAPI==null){
+    public TranslateAPI getTranslateAPI() {
+        if (translateAPI == null) {
             Gson gson = new GsonBuilder().create();
             Retrofit retrofit = new Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create(gson))

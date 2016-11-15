@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TranslatOR</string>
+    <string name="button_name">Перевод</string>
+    <string name="source_language">Переводимый язык</string>
+    <string name="source_string_hint">Ваш текст</string>
+    <string name="target_language">Язык перевода</string>
+    <string name="target_string_hint">Перевод</string>
+    <string name="speech_not_supported">Не поддерживается для вашего уст-ва. Пожалуйста, установите языковые пакеты в меню
+        Google голосовой ввод</string>
+    <string-array name="languages">
+        <item>Английский</item>
+        <item>Украинский</item>
+        <item>Русский</item>
+        <item>Итальянский</item>
+        <item>Французский</item>
+        <item>Немецкий</item>
+    </string-array>
+</resources>

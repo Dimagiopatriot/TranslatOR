@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TranslatOR</string>
+    <string name="button_name">Переклад</string>
+    <string name="source_language">Мова оригіналу</string>
+    <string name="source_string_hint">Ваш текст</string>
+    <string name="target_language">Мова перекладу</string>
+    <string name="target_string_hint">Переклад</string>
+    <string name="speech_not_supported">Не підтримується для вашого пристрою. Будь-ласка, встановіть розширення для мов в меню
+        Google мовлення</string>
+    <string-array name="languages">
+        <item>Англійська</item>
+        <item>Українська</item>
+        <item>Російська</item>
+        <item>Італійська</item>
+        <item>Французька</item>
+        <item>Німецька</item>
+    </string-array>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TranslatOR</string>
+    <string name="button_name">Übersetzen</string>
+    <string name="source_language">Ausgangssprache</string>
+    <string name="source_string_hint">Dein Text</string>
+    <string name="target_language">Zielsprache</string>
+    <string name="target_string_hint">Übersetzen</string>
+    <string name="speech_not_supported">Wird nicht für Ihr Gerät unterstützt. Bitte installieren Sie
+        Google Language-Eingabe-Menü</string>
+    <string-array name="languages">
+        <item>Englisch</item>
+        <item>Ukrainisch</item>
+        <item>Russisch</item>
+        <item>Italienisch</item>
+        <item>Französisch</item>
+        <item>Deutsche</item>
+    </string-array>
+</resources>

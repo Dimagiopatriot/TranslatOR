@@ -1,13 +1,18 @@
 <resources>
     <string name="app_name">TranslatOR</string>
-    <string name="source_string_hint">Ваш текст</string>
-    <string name="target_string_hint">Перевод</string>
+    <string name="source_string_hint">Your text</string>
+    <string name="target_string_hint">Translate</string>
+    <string name="source_language">Source language: </string>
+    <string name="target_language">Target language: </string>
+    <string name="button_name">Translate</string>
+    <string name="speech_not_supported">Not supported for your device. Please, install languages
+        Google voice typing menu</string>
     <string-array name="languages">
-        <item>Английский</item>
-        <item>Украинский</item>
-        <item>Русский</item>
-        <item>Итальянский</item>
-        <item>Французский</item>
-        <item>Немецкий</item>
+        <item>English</item>
+        <item>Ukrainian</item>
+        <item>Russian</item>
+        <item>Italian</item>
+        <item>French</item>
+        <item>German</item>
     </string-array>
 </resources>
