@@ -1,8 +1,7 @@
-package com.translator.troll.translator;
+package com.translator.troll.translator.views;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
@@ -16,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.translator.troll.translator.R;
 import com.translator.troll.translator.api.RestApiManager;
 import com.translator.troll.translator.model.Languages;
 import com.translator.troll.translator.model.TranslateRequest;
