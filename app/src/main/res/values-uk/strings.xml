@@ -16,4 +16,5 @@
         <item>Французька</item>
         <item>Німецька</item>
     </string-array>
+    <string name="progress_message">Будь-ласка, зачекайте</string>
 </resources>

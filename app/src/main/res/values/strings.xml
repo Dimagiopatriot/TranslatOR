@@ -7,6 +7,7 @@
     <string name="button_name">Translate</string>
     <string name="speech_not_supported">Not supported for your device. Please, install languages
         Google voice typing menu</string>
+    <string name="progress_message">Please wait...</string>
     <string-array name="languages">
         <item>English</item>
         <item>Ukrainian</item>

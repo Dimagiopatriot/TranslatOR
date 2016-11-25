@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 getTranslateRequestCall(queryMap);
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage(getResources().getString(R.string.progress_message));
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
         translateCall.enqueue(new Callback<TranslateRequest>() {

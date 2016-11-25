@@ -16,4 +16,5 @@
         <item>Französisch</item>
         <item>Deutsche</item>
     </string-array>
+    <string name="progress_message">Warten Sie mal...</string>
 </resources>
