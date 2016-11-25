@@ -1,5 +1,6 @@
 package com.translator.troll.translator.views;
 
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
@@ -101,6 +102,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Call<TranslateRequest> translateCall = new RestApiManager().getTranslateAPI().
                 getTranslateRequestCall(queryMap);
 
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
         translateCall.enqueue(new Callback<TranslateRequest>() {
             @Override
             public void onResponse(Call<TranslateRequest> call, Response<TranslateRequest> response) {
@@ -108,11 +112,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (translateRequest.getText() == null)
                     targetText.setText("");
                 targetText.setText(translateRequest.getText().get(0));
+                if (progressDialog != null && progressDialog.isShowing())
+                    progressDialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<TranslateRequest> call, Throwable t) {
                 Toast.makeText(MainActivity.this, "No internet connection", Toast.LENGTH_SHORT).show();
+                if (progressDialog != null && progressDialog.isShowing())
+                    progressDialog.dismiss();
             }
         });
     }
@@ -206,7 +214,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             sourceText.setText(resultString.get(0));
         }
-
         super.onActivityResult(requestCode, resultCode, data);
     }
 }
