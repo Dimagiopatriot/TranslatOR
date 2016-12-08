@@ -16,4 +16,7 @@
         <item>French</item>
         <item>German</item>
     </string-array>
+    <string name="mark_question">Please, rate TranslatOR</string>
+    <string name="positive_answer">Okey</string>
+    <string name="negative_answer">Maybe later</string>
 </resources>

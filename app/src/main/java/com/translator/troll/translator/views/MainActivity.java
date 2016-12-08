@@ -2,10 +2,13 @@ package com.translator.troll.translator.views;
 
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -83,6 +86,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    /**
+     * This method is initialize source and target languages as checkboxes lang choosen
+     */
     private void getTargetAndCompareLanguages() {
         String selectedSourceVal = getResources().getStringArray(R.array.languages)[chooseSourceLang.getSelectedItemPosition()];
         String selectedTargetVal = getResources().getStringArray(R.array.languages)[chooseTargetLang.getSelectedItemPosition()];
@@ -93,6 +99,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    /**
+     * Getting response from server and output translate if Internet connection is good
+     */
     private void getResponse() {
         getTargetAndCompareLanguages();
         Map<String, String> queryMap = new HashMap<>();
@@ -127,6 +136,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    /**
+     * @param v - view, which have been pressed
+     *          Handle elements clicking
+     */
+
     @Override
     public void onClick(View v) {
         int id = v.getId();
@@ -147,6 +161,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /**
+     *
+     * Audio output
+     * */
     private void speakTargetLang() {
         tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
@@ -173,6 +191,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
+    /**
+     * Speech converting
+     * */
     private void convertTextToSpeech() {
         text = targetText.getText().toString();
         if (text == null || "".equals(text)) {
@@ -182,6 +203,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
     }
 
+
+    /**
+     * Text speech
+     * */
     private void convertSpeechToText() {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
@@ -216,5 +241,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             sourceText.setText(resultString.get(0));
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder productMark = new AlertDialog.Builder(this);
+        productMark.setMessage(getResources().getString(R.string.mark_question))
+                .setCancelable(false)
+                .setPositiveButton(getResources().getString(R.string.positive_answer), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse("market://details?id=com.translator.troll.translator"));
+                        startActivity(intent);
+                        MainActivity.this.finish();
+                    }
+                })
+                .setNegativeButton(getResources().getString(R.string.negative_answer), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        MainActivity.this.finish();
+                    }
+                });
+        AlertDialog alert = productMark.create();
+        alert.show();
     }
 }

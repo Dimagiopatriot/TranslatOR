@@ -17,4 +17,7 @@
         <item>Немецкий</item>
     </string-array>
     <string name="progress_message">Пожалуйста, подождите...</string>
+    <string name="mark_question">Оцените TranslatOR, пожалуйста</string>
+    <string name="positive_answer">Хорошо</string>
+    <string name="negative_answer">Позже</string>
 </resources>

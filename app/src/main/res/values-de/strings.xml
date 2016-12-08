@@ -17,4 +17,7 @@
         <item>Deutsche</item>
     </string-array>
     <string name="progress_message">Warten Sie mal...</string>
+    <string name="mark_question">Bitte bewerten Sie die TranslatOR\"</string>
+    <string name="positive_answer">Ok</string>
+    <string name="negative_answer">Vielleicht später</string>
 </resources>

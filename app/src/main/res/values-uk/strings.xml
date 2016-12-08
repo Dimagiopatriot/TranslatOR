@@ -17,4 +17,7 @@
         <item>Німецька</item>
     </string-array>
     <string name="progress_message">Будь-ласка, зачекайте</string>
+    <string name="mark_question">Будь-ласка, оцініть TranslatOR</string>
+    <string name="positive_answer">Згода</string>
+    <string name="negative_answer">Пізніше</string>
 </resources>
