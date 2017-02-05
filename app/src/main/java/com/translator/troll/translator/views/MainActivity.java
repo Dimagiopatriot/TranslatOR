@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
@@ -53,11 +54,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageButton langChange;
 
     TextToSpeech tts;
+    SharedPreferences sPref;
+    SharedPreferences.Editor ed;
+    int tap_pressed = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sPref = getPreferences(MODE_PRIVATE);
+        ed = sPref.edit();
+        tap_pressed = sPref.getInt(Constants.BACK_PRESSED_TAP, 0);
 
         languages = new Languages(getResources().getStringArray(R.array.languages));
 
@@ -162,9 +169,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /**
-     *
      * Audio output
-     * */
+     */
     private void speakTargetLang() {
         tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
@@ -193,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * Speech converting
-     * */
+     */
     private void convertTextToSpeech() {
         text = targetText.getText().toString();
         if (text == null || "".equals(text)) {
@@ -206,7 +212,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * Text speech
-     * */
+     */
     private void convertSpeechToText() {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
@@ -245,27 +251,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onBackPressed() {
-        AlertDialog.Builder productMark = new AlertDialog.Builder(this);
-        productMark.setMessage(getResources().getString(R.string.mark_question))
-                .setCancelable(false)
-                .setPositiveButton(getResources().getString(R.string.positive_answer), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                        Intent intent = new Intent(Intent.ACTION_VIEW);
-                        intent.setData(Uri.parse("market://details?id=com.translator.troll.translator"));
-                        startActivity(intent);
-                        MainActivity.this.finish();
-                    }
-                })
-                .setNegativeButton(getResources().getString(R.string.negative_answer), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                        MainActivity.this.finish();
-                    }
-                });
-        AlertDialog alert = productMark.create();
-        alert.show();
+        if (tap_pressed < 3) {
+            AlertDialog.Builder productMark = new AlertDialog.Builder(this);
+            productMark.setMessage(getResources().getString(R.string.mark_question))
+                    .setCancelable(false)
+                    .setPositiveButton(getResources().getString(R.string.positive_answer), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                            Intent intent = new Intent(Intent.ACTION_VIEW);
+                            intent.setData(Uri.parse("market://details?id=com.translator.troll.translator"));
+                            tap_pressed++;
+                            ed.putInt(Constants.BACK_PRESSED_TAP, tap_pressed);
+                            ed.commit();
+                            startActivity(intent);
+                            MainActivity.this.finish();
+
+                        }
+                    })
+                    .setNegativeButton(getResources().getString(R.string.negative_answer), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                            tap_pressed++;
+                            ed.putInt(Constants.BACK_PRESSED_TAP, tap_pressed);
+                            ed.commit();
+                            MainActivity.this.finish();
+                        }
+                    });
+            AlertDialog alert = productMark.create();
+            alert.show();
+        } else
+            super.onBackPressed();
     }
 }

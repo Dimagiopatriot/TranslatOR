@@ -6,6 +6,7 @@ package com.translator.troll.translator.utils;
 public class Constants {
     public static final String API_KEY = "trnsl.1.1.20161111T191542Z.a93a176c93d68ccf.6cab36871c64c92288427935509a636a5ab9668a";
     public static final String BASE_URL = "https://translate.yandex.net/api/v1.5/tr.json/";
+    public static final String BACK_PRESSED_TAP = "back_pressed";
 
     //request code from micro
     public static final int SPEECH_REQUEST_CODE = 0;
